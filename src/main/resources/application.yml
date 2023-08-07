@@ -9,14 +9,16 @@ spring:
     name: hello-spring3.0
   profiles:
     active: dev,personal
-## Spring Cloud 配置 使用 Nacos 作为注册中心
+  ## Spring Cloud 配置 使用 Nacos 作为注册中心
   cloud:
     nacos:
       discovery:
         enabled: true
         metadata:
           content-path: ${server.servlet.context-path}/actuator
-        namespace: 867085f0-760b-4a1e-8b9c-48c8de3195f7
+        namespace: ${personal_namespace}
         server-addr: ${nacos_addr}
+        # 权重配置，本地dev开发时如果注册到测试测试环境的 namespace 时,请设置为0，不要接收其他服务的请求，影响线上测试
+        weight: 0F
       password: ${nacos_username}
       username: ${nacos_password}
