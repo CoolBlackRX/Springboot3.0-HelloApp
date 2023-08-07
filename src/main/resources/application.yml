@@ -1,0 +1,11 @@
+logging:
+  config: classpath:logback-spring.xml
+server:
+  port: 8080
+  servlet:
+    context-path: /api/demo
+spring:
+  application:
+    name: hello-spring3.0
+  profiles:
+    active: dev
