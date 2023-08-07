@@ -39,6 +39,9 @@
     </appender>
     <springProfile name="dev">
         <logger name="org.springframework" level="INFO"/>
+        <logger name="org.mybatis" level="INFO"/>
+        <logger name="com.baomidou" level="INFO"/>
+        <logger name="com.hello.springboot" level="DEBUG"/>
         <root level="INFO">
             <!-- 启用日志打印格式 -->
             <appender-ref ref="STDOUT"/>

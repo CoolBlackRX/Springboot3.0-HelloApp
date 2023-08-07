@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hello.springboot.mapper.SystemUserMapper">
+    <resultMap id="UserModel" type="com.hello.springboot.model.SystemUser">
+        <id column="id" property="userId"/>
+        <result column="user_name" property="userName"/>
+    </resultMap>
+
+    <select id="getByUserId" resultMap="UserModel">
+        select id, user_name
+        from sys_user
+        where id = #{userId}
+    </select>
+</mapper>

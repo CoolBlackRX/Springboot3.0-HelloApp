@@ -1,1 +1,9 @@
 ## 配置信息，部署时下转移到配置中心
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://${mysql_addr}/hello_spring?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${mysql_username}
+    password: ${mysql_password}

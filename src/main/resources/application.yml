@@ -8,4 +8,4 @@ spring:
   application:
     name: hello-spring3.0
   profiles:
-    active: dev
+    active: dev, personal
