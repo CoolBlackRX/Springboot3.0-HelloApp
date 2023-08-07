@@ -24,4 +24,5 @@ hs_err_pid*
 replay_pid*
 
 .idea
-
+## 个人敏感信息
+src/main/resources/application-personal.yml
