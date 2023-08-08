@@ -15,12 +15,14 @@
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>17</java.version>
-        <!-- idea 警告 snake-yaml 1.33版本有漏洞 -->
-        <snakeyaml.version>2.0</snakeyaml.version>
+        <!-- idea 警告 snake-yaml 1.33版本有漏洞 ,
+            shardingsphere 暂不支持2.0版本的snakeyaml,降回到1.33 -->
+        <snakeyaml.version>1.33</snakeyaml.version>
 
         <mysql-connection.version>8.0.33</mysql-connection.version>
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
         <mybatis-spring.version>3.0.2</mybatis-spring.version>
+        <shardingsphere.version>5.2.1</shardingsphere.version>
     </properties>
 
     <dependencies>
@@ -36,7 +38,7 @@
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
-            <version>2.0</version>
+            <version>${snakeyaml.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -76,6 +78,44 @@
             <artifactId>mybatis-spring-boot-starter-test</artifactId>
             <version>${mybatis-spring.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <!--  引入shardingsphere-jdbc -->
+
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>shardingsphere-jdbc-core-spring-boot-starter</artifactId>
+            <version>${shardingsphere.version}</version>
+            <exclusions>
+                <!-- 有漏洞换用新版本 -->
+                <exclusion>
+                    <groupId>com.google.protobuf</groupId>
+                    <artifactId>protobuf-java</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.h2database</groupId>
+                    <artifactId>h2</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>3.23.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>2.2.220</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.20.0</version>
         </dependency>
 
     </dependencies>

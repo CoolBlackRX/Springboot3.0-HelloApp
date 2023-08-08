@@ -1,9 +1,36 @@
 ## 配置信息，部署时下转移到配置中心
-
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://${mysql_addr}/hello_spring?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
-    username: ${mysql_username}
-    password: ${mysql_password}
+    driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
+
+  ## shardingsphere 配置实现读写分离
+  shardingsphere:
+    mode:
+      type: Standalone
+    datasource:
+      names: master,slave
+      master:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://${mysql_addr}/hello_spring?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
+        password: ${mysql_password}
+        username: ${mysql_username}
+        type: com.zaxxer.hikari.HikariDataSource
+      slave:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://${mysql_addr}/hello_spring2?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
+        password: ${mysql_password}
+        username: ${mysql_username}
+        type: com.zaxxer.hikari.HikariDataSource
+    rules:
+      readwrite-splitting:
+        data-sources:
+          master-slave:
+            load-balancer-name: read-load-balancer-name
+            static_strategy:
+              read_data_source_names: slave
+              write_data_source_name: master
+        load-balancers:
+          read-load-balancer-name:
+            props: 'null'
+            type: RANDOM
+
