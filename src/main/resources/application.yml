@@ -6,12 +6,15 @@ server:
     context-path: /api/demo
 spring:
   application:
-    name: hello-spring3.0
+    name: hello-springboot3
   profiles:
-    active: dev,personal
+    active: "development"
+    group:
+      development: dev,personal
   ## Spring Cloud 配置 使用 Nacos 作为注册中心
   cloud:
     nacos:
+      ## nacos 作为注册中心
       discovery:
         enabled: true
         metadata:
@@ -20,5 +23,15 @@ spring:
         server-addr: ${nacos_addr}
         # 权重配置，本地dev开发时如果注册到测试测试环境的 namespace 时,请设置为0，不要接收其他服务的请求，影响线上测试
         weight: 0F
-      password: ${nacos_username}
-      username: ${nacos_password}
+      # nacos 开启鉴权认证
+      username: ${nacos_username}
+      password: ${nacos_password}
+      ## nacos 作为配置中心
+      config:
+        server-addr: ${nacos_addr}
+        namespace: ${personal_namespace}
+        file-extension: properties
+  config:
+    import:
+      - optional:classpath:application-personal.yml
+      - nacos:${spring.application.name}-${spring.profiles.active}.properties
