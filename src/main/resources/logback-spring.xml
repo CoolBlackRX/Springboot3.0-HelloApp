@@ -42,6 +42,7 @@
         <logger name="org.mybatis" level="INFO"/>
         <logger name="com.baomidou" level="INFO"/>
         <logger name="com.hello.springboot" level="DEBUG"/>
+        <logger name="io.minio" level="INFO"/>
         <root level="INFO">
             <!-- 启用日志打印格式 -->
             <appender-ref ref="STDOUT"/>

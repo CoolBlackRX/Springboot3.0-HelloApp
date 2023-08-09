@@ -21,9 +21,21 @@
         <mysql-connection.version>8.0.33</mysql-connection.version>
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
         <mybatis-spring.version>3.0.2</mybatis-spring.version>
+        <minio.version>8.5.4</minio.version>
+        <hutool.version>5.8.21</hutool.version>
     </properties>
+    <dependencyManagement>
+        <dependencies>
+
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -77,6 +89,21 @@
             <version>${mybatis-spring.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- 文件存储服务 minio -->
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>${minio.version}</version>
+        </dependency>
+
+        <!-- 引入 hutool 核心工具类，其他模块对jdk17的兼容性测试还没完成,官方的完全兼容版本测试在6.x版本 -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-core</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
+
 
     </dependencies>
     <build>

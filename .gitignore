@@ -25,4 +25,5 @@ replay_pid*
 
 .idea
 target
-
+## 个人敏感信息
+src/main/resources/application-personal.yml

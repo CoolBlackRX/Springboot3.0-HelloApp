@@ -7,3 +7,16 @@ spring:
     url: jdbc:mysql://${mysql_addr}/hello_spring?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
     username: ${mysql_username}
     password: ${mysql_password}
+
+
+
+  servlet:
+    multipart:
+      # 如果是想要不限制文件上传的大小,那么就把两个值都设置为-1
+      max-file-size: -1 # 3MB 上传的单个文件的大小最大为3MB
+      max-request-size: -1  # 9MB 单次请求的所有文件的总大小最大为9MB
+minio:
+  endpoint: http://10.10.36.247:9000
+  access-key: admin
+  secret-key: admin123
+  namespace: bpg-yg-main-fe

@@ -9,6 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class HelloSpringBoot3XApplicationRunner {
     public static void main(String[] args) {
         SpringApplication.run(HelloSpringBoot3XApplicationRunner.class, args);
-        log.info("服务器启动成功");
+        log.info("服务启动成功");
     }
 }
