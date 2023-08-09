@@ -35,6 +35,16 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-openfeign-dependencies</artifactId>
+                <version>4.0.4</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-commons-dependencies</artifactId>
+                <version>4.0.4</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -58,7 +68,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
         <!-- 服务注册与发现 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -90,6 +99,19 @@
             <artifactId>logback-adapter</artifactId>
             <version>1.0.0</version>
         </dependency>
+
+
+        <!-- 微服务之间接口调用 nacos添加了grpc,所以可以实现内部接口调用使用grpc ,外部接口调用使用http  -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
+
 
     </dependencies>
     <build>
