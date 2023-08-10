@@ -7,18 +7,14 @@ import cn.hutool.core.util.StrUtil;
 import com.google.common.base.MoreObjects;
 import com.hello.springboot.config.MinioClientConfigurer;
 import io.minio.*;
-import io.minio.errors.*;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 
 @Slf4j
 @Component
@@ -62,6 +58,7 @@ public class FileStorageManager {
                         .build();
                 minioClient.putObject(uploadObjectArgs);
                 log.info("""
+                        \n
                         {
                             客户端上传的原始文件名称:{}
                             文件类型:{}
